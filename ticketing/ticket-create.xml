@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ticket>
+  <ticket_msg>I am opening a ticket!</ticket_msg>
+  <test>testing</test>
+  <foo>bar</foo>
+</ticket>
