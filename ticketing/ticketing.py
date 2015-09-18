@@ -102,18 +102,6 @@ def callback(ch, method, properties, body):
     body = temp[0]
     vcd  = temp[1]
     
-    from pprint import pprint
-    #pprint(ch)
-    #print "-*meth"*30
-    #pprint(method)
-    #print "-*props"*30
-    #pprint(properties)
-    #print "-*body"*30
-    #pprint(body)
-    #print "-*vcd"*30
-    #pprint(vcd)
-    #print "-*"*30
-
     req_uri = body['requestUri'].split('/api/org/')[1].split('/')
     org_id = req_uri[0]
 
