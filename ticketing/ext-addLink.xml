@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vmext:ServiceLink
+   xmlns:vmext="http://www.vmware.com/vcloud/extension/v1.5"
+   xmlns:vcloud="http://www.vmware.com/vcloud/v1.5"
+   type="application/vnd.vmware.admin.serviceLink+xml">
+   <vmext:LinkHref>{baseUri}org/{resourceId}/ticketing</vmext:LinkHref>
+   <vmext:MimeType>application/vnd.example.vcd.tickets+xml</vmext:MimeType>
+   <vmext:Rel>listTickets</vmext:Rel>
+   <vmext:ResourceType>application/vnd.vmware.vcloud.org+xml</vmext:ResourceType>
+</vmext:ServiceLink>
