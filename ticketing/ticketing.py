@@ -11,6 +11,7 @@ rabbit_password   = 'vcdextpass'
 rabbit_exchange   = 'vcdext'
 rabbit_routingkey = 'gcp-ticketing'
 
+#Stores the tickets in use by the system.
 tickets = {'9aee51e8-654e-49a8-8dab-3fdbf00a21ae' : {'href':'/api/org/9aee51e8-654e-49a8-8dab-3fdbf00a21ae', 
                                                      'name':'Coke', 
                                                      'tickets' : [{'ticket_id':1000, 'user_id': '44fbd6f9-7a76-4bca-b273-3536b181ad09', 'href':'/api/org/9aee51e8-654e-49a8-8dab-3fdbf00a21ae/ticketing/1000', 'ticket_msg': "I am opening a ticket!", 'status' :  "open"}, 
@@ -24,9 +25,9 @@ ticket_id = 2000
 pub_channel = None
 
 def _dict_to_xml(tag, d):
-    '''
+    """
     Turn a simple dict of key/value pairs into XML
-    '''
+    """
     elem = Element(tag)
     for key, val in d.items():
         child = Element(key)
@@ -35,9 +36,9 @@ def _dict_to_xml(tag, d):
     return tostring(elem)
 
 def _xml_to_dict(xml_str):
-    '''
+    """
     Turn a very set structure of xml to a dictionary.
-    '''
+    """
     root = fromstring(xml_str)
     ret_dict = {}
 
@@ -47,12 +48,18 @@ def _xml_to_dict(xml_str):
     return ret_dict
 
 def _create_ticket(user_id, msg, uri):
+    """
+    Helper function for creating a ticket.
+    """
     global ticket_id
     ticket_id += 1
     href = "%s/%s" % (uri, str(ticket_id))
     return {'ticket_id':ticket_id, 'href':href, 'user_id':user_id, 'ticket_msg':msg, 'status':"open"} 
 
 def get_org_tickets(org_id):
+    """
+    Get all the ticekts for a given organization.
+    """
     ts = [{'ticket_id':t['ticket_id'], 'href':t['href']} for t in tickets[org_id]['tickets']]
 
     if len(ts) != 0:
@@ -64,6 +71,9 @@ def get_org_tickets(org_id):
         return "No tickets found."
 
 def get_ticket(org_id, ticket_id):
+    """
+    Return a specific ticket.
+    """
     t = [t for t in tickets[org_id]['tickets'] if t['ticket_id'] == ticket_id]
 
     if len(t) == 1:
@@ -72,11 +82,17 @@ def get_ticket(org_id, ticket_id):
         return "No ticket found."
 
 def post_new_ticket(org_id, user_id, msg, uri):
+    """
+    Method called on POST action for creating a new ticket.
+    """
     ticket = _create_ticket(user_id, msg, uri)
     tickets[org_id]['tickets'].append(ticket)
     return _dict_to_xml('ticket', ticket)
 
 def delete_ticket(org_id, ticket_id):
+    """
+    Delete an individual ticket.
+    """
     for i,t in enumerate(tickets[org_id]['tickets']):
         if t['ticket_id'] == ticket_id:
             tickets[org_id]['tickets'].pop(i)
@@ -84,6 +100,9 @@ def delete_ticket(org_id, ticket_id):
     return get_org_tickets(org_id)
 
 def update_ticket(org_id, ticket_id, update_dict):
+    """
+    Apply update to a ticket. Called on PUT action.
+    """
     ret_str = ''
     for t in tickets[org_id]['tickets']:
         if t['ticket_id'] == ticket_id:
@@ -169,6 +188,9 @@ def callback(ch, method, properties, body):
     print ' [X] message handeled'
 
 def main():
+    """
+    Main function executed when script is run.
+    """
     print "Starting ticketing..."
     # Connect to RabbitMQ
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbit_host, credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))
