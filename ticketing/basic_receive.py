@@ -12,9 +12,7 @@ rabbit_routingkey = 'gcp-ticketing'
 
 
 # Connect to RabbitMQ
-connection = pika.BlockingConnection(pika.ConnectionParameters(
-        host=rabbit_host,
-        credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))
+connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbit_host, credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))
 
 # Create a channel to subscribe to the incoming messages.
 sub_channel = connection.channel()
