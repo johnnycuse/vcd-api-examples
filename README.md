@@ -1,2 +1,7 @@
 # vcd-api-examples
-This repository is meant to house examples of developing against the vCloud Director API.
+This contains examples of working with the vCloud Director API.
+
+What is vCloud Director?
+
+VMware vCloud Director enables service providers to build a multi-tenant, hybrid aware Infrastructure-as-a-Service(IaaS) offering. By pooling resources into virtual datacenters, vCloud Director gives service providers the ability to provision compute, networking and storage in minutes. Exposing the vCloud Director API facilitates deep integration between enterprise’s running VMware’s core software defined datacenter products and the providers cloud.   Providers can also create differentiated cloud services by using the extension framework included with the API.
+
