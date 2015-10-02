@@ -20,8 +20,7 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(
 sub_channel = connection.channel()
 sub_channel.exchange_declare(exchange=rabbit_exchange, type='direct', durable=True)
 sub_channel.queue_declare(queue=rabbit_routingkey)
-sub_channel.queue_bind(exchange=rabbit_exchange,
-                       queue=rabbit_routingkey)
+sub_channel.queue_bind(exchange=rabbit_exchange, queue=rabbit_routingkey)
 
 print ' [*] Waiting for messages on exchange %s. To exit press CTRL+C' % rabbit_exchange
 
