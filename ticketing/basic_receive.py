@@ -28,7 +28,7 @@ pub_channel = connection.channel()
 
 def callback(ch, method, properties, body):
     """
-    Function for handeling all messages received on the RabbitMQ Exchange
+    Function for handleing all messages received on the RabbitMQ Exchange
     """
     print ' [!] Received a message!'
     body = json.loads(body)[0]
