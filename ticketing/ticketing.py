@@ -128,7 +128,7 @@ def update_ticket(org_id, sel_ticket_id, update_dict):
 
 def callback(ch, method, properties, body):
     """
-    Function for handeling all messages received on the RabbitMQ Exchange
+    Function for handleing all messages received on the RabbitMQ Exchange
     """
     print ' [!] Received a message!'
     temp = json.loads(body)
@@ -203,7 +203,7 @@ def callback(ch, method, properties, body):
                               json.dumps(rsp_msg),
                               rsp_properties)
 
-    print ' [X] message handeled'
+    print ' [X] message handled'
 
 def main():
     """
