@@ -74,7 +74,7 @@ def get_org_tickets(org_id):
     """
     Get all the ticekts for a given organization.
     """
-    org_ts = [{'ticket_id':t['ticket_id'], 'href':t['href']} for t in tickets[org_id]['tickets']]
+    org_ts = [{'ticket_id':t['ticket_id'], 'href':t['href'], 'status':t['status'], 'ticket_msg':t['ticket_msg']} for t in tickets[org_id]['tickets']]
 
     if len(org_ts) != 0:
         ret_str = ''
