@@ -17,7 +17,7 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(\
 
 # Create a channel to subscribe to the incoming messages.
 sub_channel = connection.channel()
-sub_channel.exchange_declare(exchange=RABBIT_EXCHANGE, type='direct', durable=True)
+sub_channel.exchange_declare(exchange=RABBIT_EXCHANGE, exchange_type='direct', durable=True)
 sub_channel.queue_declare(queue=RABBIT_ROUTINGKEY)
 sub_channel.queue_bind(exchange=RABBIT_EXCHANGE, queue=RABBIT_ROUTINGKEY)
 
